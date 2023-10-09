@@ -6,7 +6,7 @@
 /*   By: goda-sil <goda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:46:16 by goda-sil          #+#    #+#             */
-/*   Updated: 2023/10/04 13:59:18 by goda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:29:13 by goda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	highest_range(t_stack *stack)
 {
 	int	counter;
 	int	value;
-	int position;
+	int	position;
 
 	counter = 0;
-	value = 0;
-
+	value = stack->stack[0];
+	position = 0;
 	while (stack->stack[counter])
 	{
 		if (stack->stack[counter] > value)

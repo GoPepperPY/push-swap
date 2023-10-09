@@ -6,7 +6,7 @@
 /*   By: goda-sil <goda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:26:22 by goda-sil          #+#    #+#             */
-/*   Updated: 2023/10/04 16:04:06 by goda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:19:21 by goda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	lowest(t_stack *stack_a)
 void	passing_b(t_stack *stack_a, t_stack *stack_b, int a, int b)
 {
 	int	counter;
-	int counter_two;
+	int	counter_two;
 
 	counter = 0;
 	counter_two = 0;
