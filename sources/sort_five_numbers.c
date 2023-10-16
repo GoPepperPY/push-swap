@@ -6,7 +6,7 @@
 /*   By: goda-sil <goda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:26:22 by goda-sil          #+#    #+#             */
-/*   Updated: 2023/10/04 16:19:21 by goda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:24:10 by goda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ int	highest(t_stack *stack_a)
 	int	counter;
 	int	number;
 
-	counter = -1;
-	number = stack_a->stack[0];
-	while (stack_a->stack[++counter])
-		if (number < stack_a->stack[counter])
-			number = stack_a->stack[counter];
+	counter = 0;
+	number = stack_a->index[0];
+	while (stack_a->index[counter])
+	{
+		if (number < stack_a->index[counter])
+			number = stack_a->index[counter];
+		counter++;
+	}
 	return (number);
 }
 
@@ -30,43 +33,43 @@ int	lowest(t_stack *stack_a)
 	int	counter;
 	int	number;
 
-	counter = -1;
-	number = stack_a->stack[0];
-	while (stack_a->stack[++counter])
-		if (number > stack_a->stack[counter])
-			number = stack_a->stack[counter];
+	counter = 0;
+	number = stack_a->index[0];
+	while (stack_a->index[++counter])
+		if (number > stack_a->index[counter])
+			number = stack_a->index[counter];
 	return (number);
 }
 
 void	passing_b(t_stack *stack_a, t_stack *stack_b, int a, int b)
 {
 	int	counter;
-	int	counter_two;
 
 	counter = 0;
-	counter_two = 0;
-	while (stack_b->size < 2)
+	while (1)
 	{
-		if (stack_a->stack[0] == a || stack_a->stack[0] == b)
+		if (stack_a->index[0] == a || stack_a->index[0] == b)
 		{
 			pb(stack_a, stack_b);
+			counter++;
+			if (counter == 2)
+				break;
 		}
 		else
-		{
-			if ((stack_a->stack[1] == a || stack_a->stack[1] == b)
-				|| (stack_a->stack[2] == a || stack_a->stack[2] == b))
-				ra(stack_a);
-			else
-				rra(stack_a);
-		}
+			ra(stack_a);
 	}
-	if (stack_b->stack[1] > stack_b->stack[0])
+	if (stack_b->index[0] < stack_b->index[1])
 		rb(stack_b);
 }
 
 void	sort_five_numbers(t_stack *stack_a, t_stack *stack_b)
 {
-	passing_b(stack_a, stack_b, lowest(stack_a), highest(stack_a));
+	int	l;
+	int	h;
+
+	l = lowest(stack_a);
+	h = highest(stack_a);
+	passing_b(stack_a, stack_b, l, h);
 	sort_three_numbers(stack_a);
 	pa(stack_a, stack_b);
 	ra(stack_a);

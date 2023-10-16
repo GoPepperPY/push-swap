@@ -6,7 +6,7 @@
 /*   By: goda-sil <goda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:46:16 by goda-sil          #+#    #+#             */
-/*   Updated: 2023/10/09 15:29:13 by goda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:36:09 by goda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	highest_range(t_stack *stack)
 	int	position;
 
 	counter = 0;
-	value = stack->stack[0];
+	value = 0;
 	position = 0;
-	while (stack->stack[counter])
+	while (counter < stack->size)
 	{
-		if (stack->stack[counter] > value)
+		if (stack->index[counter] > value)
 		{
-			value = stack->stack[counter];
+			value = stack->index[counter];
 			position = counter;
 		}
 		counter++;
@@ -36,29 +36,26 @@ int	highest_range(t_stack *stack)
 void	organize(t_stack *stack_a, t_stack *stack_b)
 {
 	int	highest_number_position;
-	int	counter;
 	int	temporary;
 
 	while (stack_b->size > 0)
 	{
 		highest_number_position = highest_range(stack_b);
-		temporary = stack_b->stack[highest_number_position];
+		temporary = stack_b->index[highest_number_position];
 		if (highest_number_position <= stack_b->size / 2)
 		{
-			counter = -1;
 			while (1)
 			{
-				if (stack_b->stack[0] == temporary)
+				if (stack_b->index[0] == temporary)
 					break ;
 				rb(stack_b);
 			}
 		}
 		else 
 		{
-			counter = stack_b->size + 1;
 			while (1)
 			{
-				if (stack_b->stack[0] == temporary)
+				if (stack_b->index[0] == temporary)
 					break ;
 				rrb(stack_b);
 			}
